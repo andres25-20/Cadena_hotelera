@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Acomodacion extends Model
 {
+    protected $table = 'acomodaciones';
     protected $fillable = ['nombre'];
 
     public function reglasAcomodacion()

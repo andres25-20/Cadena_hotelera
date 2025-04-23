@@ -13,8 +13,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombre')->unique();
             $table->string('direccion');
-            $table->string('ciudad');
-            $table->string('nit')->unique();
+            $table->foreignId('ciudad_id')->constrained('ciudades')->onDelete('cascade');            $table->string('nit')->unique();
             $table->integer('numero_habitaciones');
             $table->timestamps();
         });

@@ -9,10 +9,11 @@ class Hotel extends Model
 {
     use HasFactory;
 
+    protected $table = 'hoteles';
     protected $fillable = [
         'nombre',
         'direccion',
-        'ciudad_id',  // Asegúrate de que esté incluida la relación
+        'ciudad_id',  
         'numero_habitaciones',
         'nit',
     ];
