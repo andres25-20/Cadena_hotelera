@@ -19,14 +19,14 @@ class UserController extends Controller
             'nombre' => 'required|string|max:255',
             'email' => 'required|email|unique:users',
             'password' => 'required|string|min:8',
-            'role_id' => 'nullable|exists:roles,id',
+            'rol_id' => 'nullable|exists:roles,id',
         ]);
 
         $usuario = User::create([
             'nombre' => $request->nombre,
             'email' => $request->email,
             'password' => bcrypt($request->password),
-            'role_id' => $request->role_id,
+            'rol_id' => $request->rol_id,
         ]);
 
         return response()->json($usuario, 201);
@@ -49,7 +49,7 @@ class UserController extends Controller
             'nombre' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,' . $id,
             'password' => 'nullable|string|min:8',
-            'role_id' => 'nullable|exists:roles,id',
+            'rol_id' => 'nullable|exists:roles,id',
         ]);
 
         $usuario = User::find($id);
@@ -59,7 +59,7 @@ class UserController extends Controller
                 'nombre' => $request->nombre,
                 'email' => $request->email,
                 'password' => $request->password ? bcrypt($request->password) : $usuario->password,
-                'role_id' => $request->role_id,
+                'rol_id' => $request->rol_id,
             ]);
 
             return response()->json($usuario);

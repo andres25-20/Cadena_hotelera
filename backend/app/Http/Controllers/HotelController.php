@@ -9,7 +9,7 @@ class HotelController extends Controller
 {
     public function index()
     {
-        $hoteles = Hotel::with('ciudad')->get();  // Eager loading para traer la ciudad relacionada
+        $hoteles = Hotel::with('ciudad')->get(); 
         return response()->json($hoteles);
     }
 
@@ -21,6 +21,7 @@ class HotelController extends Controller
             'ciudad_id' => 'required|exists:ciudades,id',
             'nit' => 'required|string|max:255|unique:hoteles',
             'numero_habitaciones' => 'required|integer|min:1',
+            'gerente_id' => 'nullable|exists:users,id',
         ]);
 
         $hotel = Hotel::create($request->all());
@@ -30,7 +31,7 @@ class HotelController extends Controller
 
     public function show($id)
     {
-        $hotel = Hotel::with('ciudad')->find($id);  // Traemos también la ciudad relacionada
+        $hotel = Hotel::with('ciudad')->find($id);
 
         if ($hotel) {
             return response()->json($hotel);

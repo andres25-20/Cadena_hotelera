@@ -19,7 +19,7 @@ class UsuariosSeeder extends Seeder
                 'nombre' => 'Admin Principal',
                 'email' => 'admin@decameron.com',
                 'password' => Hash::make('admin123'),
-                'role_id' => $adminId,
+                'rol_id' => $adminId,
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -27,7 +27,7 @@ class UsuariosSeeder extends Seeder
                 'nombre' => 'Gerente Hotel Bella Vista',
                 'email' => 'gerente@hotelbellavista.com',
                 'password' => Hash::make('gerente123'),
-                'role_id' => $gerenteId,
+                'rol_id' => $gerenteId,
                 'created_at' => now(),
                 'updated_at' => now(),
             ]

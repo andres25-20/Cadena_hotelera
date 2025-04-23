@@ -13,13 +13,20 @@ class Hotel extends Model
     protected $fillable = [
         'nombre',
         'direccion',
-        'ciudad_id',  
+        'ciudad_id',
         'numero_habitaciones',
         'nit',
+        'gerente_id',
     ];
 
     public function ciudad()
     {
         return $this->belongsTo(Ciudad::class);
     }
+
+    public function habitaciones()
+    {
+        return $this->hasMany(Habitacion::class);
+    }
+
 }

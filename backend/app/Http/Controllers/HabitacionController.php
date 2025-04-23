@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Habitacion;
 use Illuminate\Http\Request;
+use App\Models\Hotel;
 
 class HabitacionController extends Controller
 {
@@ -21,6 +22,13 @@ class HabitacionController extends Controller
             'acomodacion_id' => 'required|exists:acomodaciones,id',
             'cantidad' => 'required|integer|min:1',
         ]);
+
+        $hotel = Hotel::findOrFail($request->hotel_id);
+        $habitaciones_actuales = Habitacion::where('hotel_id', $hotel->id)->sum('cantidad');
+
+        if ($habitaciones_actuales + $request->cantidad > $hotel->numero_habitaciones) {
+            return response()->json(['message' => 'Supera el número máximo de habitaciones permitido para este hotel'], 422);
+        }
 
         $habitacion = Habitacion::create($request->all());
 

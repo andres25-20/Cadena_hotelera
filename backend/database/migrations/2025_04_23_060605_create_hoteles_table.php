@@ -15,6 +15,7 @@ return new class extends Migration
             $table->string('direccion');
             $table->foreignId('ciudad_id')->constrained('ciudades')->onDelete('cascade');            $table->string('nit')->unique();
             $table->integer('numero_habitaciones');
+            $table->foreignId('gerente_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
