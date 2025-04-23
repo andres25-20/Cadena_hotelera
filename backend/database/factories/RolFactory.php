@@ -17,7 +17,7 @@ class RolFactory extends Factory
     public function definition()
     {
         return [
-            'nombre' => $this->faker->word, // Aquí generamos un nombre para el rol
+            'nombre' => $this->faker->word,
         ];
     }
 }
