@@ -9,18 +9,26 @@ class UserController extends Controller
 {
     public function index()
     {
-        $usuarios = User::all();
+        $usuarios = User::with('rol')->get();
         return response()->json($usuarios);
     }
 
     public function store(Request $request)
     {
-        $request->validate([
-            'nombre' => 'required|string|max:255',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|string|min:8',
-            'rol_id' => 'nullable|exists:roles,id',
-        ]);
+        try {
+            $request->validate([
+                'nombre' => 'required|string|max:255',
+                'email' => 'required|email|unique:users',
+                'password' => 'required|string|min:8',
+                'rol_id' => 'nullable|exists:roles,id',
+            ]);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return response()->json([
+                'message' => 'Validación fallida',
+                'errors' => $e->errors(),
+            ], 422);
+        }
+
 
         $usuario = User::create([
             'nombre' => $request->nombre,
