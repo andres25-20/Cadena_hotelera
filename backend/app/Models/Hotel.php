@@ -24,6 +24,11 @@ class Hotel extends Model
         return $this->belongsTo(Ciudad::class);
     }
 
+    public function gerente()
+    {
+        return $this->belongsTo(User::class, 'gerente_id');
+    }
+
     public function habitaciones()
     {
         return $this->hasMany(Habitacion::class);

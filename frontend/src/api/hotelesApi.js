@@ -1,21 +1,8 @@
 import api from './axios';
 
-export const getHoteles = async () => {
-  try {
-    const response = await api.get('/hoteles');
-    return response.data;
-  } catch (error) {
-    console.error("Error al obtener hoteles", error);
-    throw error;
-  }
-};
+export const createHotel = (data) => api.post('/hoteles', data);
+export const getHoteles = () => api.get('/hoteles');
+export const getCiudades = () => api.get('/ciudades');
+export const getUsuarios = () => api.get('/usuarios');
 
-export const createHotel = async (data) => {
-  try {
-    const response = await api.post('/hoteles', data);
-    return response.data;
-  } catch (error) {
-    console.error("Error al crear hotel", error);
-    throw error;
-  }
-};
+

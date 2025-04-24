@@ -9,7 +9,7 @@ class HotelController extends Controller
 {
     public function index()
     {
-        $hoteles = Hotel::with('ciudad')->get(); 
+        $hoteles = Hotel::with(['ciudad','gerente'])->get();
         return response()->json($hoteles);
     }
 
@@ -22,6 +22,9 @@ class HotelController extends Controller
             'nit' => 'required|string|max:255|unique:hoteles',
             'numero_habitaciones' => 'required|integer|min:1',
             'gerente_id' => 'nullable|exists:users,id',
+        ], [
+            'nombre.unique' => 'El nombre del hotel ya está registrado.',
+            'nombre.required' => 'El nombre del hotel es obligatorio.',
         ]);
 
         $hotel = Hotel::create($request->all());
