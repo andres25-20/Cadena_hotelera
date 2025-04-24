@@ -64,4 +64,22 @@ class AcomodacionController extends Controller
             return response()->json(['message' => 'Acomodación no encontrada'], 404);
         }
     }
+
+    public function listPermitidas()
+    {
+        $acomodaciones = \DB::table('reglas_acomodacion')
+            ->join('acomodaciones', 'reglas_acomodacion.acomodacion_id', '=', 'acomodaciones.id')
+            ->select('acomodaciones.id', 'acomodaciones.nombre')
+            ->distinct()
+            ->orderBy('acomodaciones.nombre')
+            ->get();
+
+        return response()->json($acomodaciones);
+    }
+
+    public function listConReglas()
+    {
+        $acomodaciones = Acomodacion::with('tiposPermitidos:id,nombre')->get(['id', 'nombre']);
+        return response()->json($acomodaciones);
+    }
 }

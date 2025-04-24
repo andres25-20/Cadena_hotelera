@@ -21,4 +21,14 @@ class Acomodacion extends Model
     {
         return $this->hasMany(Habitacion::class);
     }
+
+    public function tiposPermitidos()
+{
+    return $this->belongsToMany(
+        \App\Models\TipoHabitacion::class,
+        'reglas_acomodacion',
+        'acomodacion_id',
+        'tipo_habitacion_id'
+    );
+}
 }

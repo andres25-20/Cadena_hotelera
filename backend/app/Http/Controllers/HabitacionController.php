@@ -10,7 +10,7 @@ class HabitacionController extends Controller
 {
     public function index()
     {
-        $habitaciones = Habitacion::all();
+        $habitaciones = Habitacion::with(['hotel', 'tipoHabitacion', 'acomodacion'])->get();
         return response()->json($habitaciones);
     }
 

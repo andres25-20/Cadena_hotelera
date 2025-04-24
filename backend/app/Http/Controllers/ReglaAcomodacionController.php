@@ -66,4 +66,15 @@ class ReglaAcomodacionController extends Controller
             return response()->json(['message' => 'Regla de acomodación no encontrada'], 404);
         }
     }
+
+    public function getAcomodacionesPorTipo($tipoHabitacionId)
+    {
+        $acomodaciones = \DB::table('reglas_acomodacion')
+            ->where('tipo_habitacion_id', $tipoHabitacionId)
+            ->join('acomodaciones', 'reglas_acomodacion.acomodacion_id', '=', 'acomodaciones.id')
+            ->select('acomodaciones.id', 'acomodaciones.nombre')
+            ->get();
+
+        return response()->json($acomodaciones);
+    }
 }
