@@ -75,3 +75,13 @@
       background-color: #f9f9f9;
     }
   }
+
+  #root {
+    width: -webkit-fill-available;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #styl-cel{
+    background-color: #2C5C74
+  }

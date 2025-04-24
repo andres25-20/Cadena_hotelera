@@ -4,12 +4,12 @@ import Header from './components/Header';
 
 const App = ({ children }) => {
   return (
-    <>
-      <Header /> {/* Aquí se incluye el Header */}
-      <main className="container mt-5"> {/* Aumentamos el margen superior */}
+    <div className="d-flex flex-column min-vh-100">
+      <Header />
+      <main className="flex-grow-1 d-flex justify-content-center align-items-start pt-4">
         {children}
       </main>
-    </>
+    </div>
   );
 };
 
